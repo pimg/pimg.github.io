@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>custom-splitter on API&#39;s you can trust</title>
+    <link>http://pimg.github.io/tags/custom-splitter/</link>
+    <description>Recent content in custom-splitter on API&#39;s you can trust</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 30 Jun 2017 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/tags/custom-splitter/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Camel Split using a custom Iterator</title>
+      <link>http://pimg.github.io/posts/2017/06/camel-split-using-a-custom-iterator/</link>
+      <pubDate>Fri, 30 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2017/06/camel-split-using-a-custom-iterator/</guid>
+      <description>One of the more commonly used EIP’s in Camel is the Splitter, you can find the documentation here http://camel.apache.org/splitter.html
+Usually the splitter is used for tokenizing some message or splitting collections into single messages. But what if you need something more specific? It is good to know that the splitter can either split on Java collection types as well as Iterators. In this blog we are going to create a custom Iterator helper class and method.</description>
+    </item>
+    
+  </channel>
+</rss>

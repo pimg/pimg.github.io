@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>java-plugin on API&#39;s you can trust</title>
+    <link>http://pimg.github.io/tags/java-plugin/</link>
+    <description>Recent content in java-plugin on API&#39;s you can trust</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 10 Mar 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/tags/java-plugin/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Authenticating a JMS consumer with 3Scale, Camel and ActiveMQ</title>
+      <link>http://pimg.github.io/posts/2018/03/authenticating-a-jms-consumer-with-3scale-camel-and-activemq/</link>
+      <pubDate>Sat, 10 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2018/03/authenticating-a-jms-consumer-with-3scale-camel-and-activemq/</guid>
+      <description>3Scale is an API Management platform used for authenticating an throttleing API calls among many, many other things. Now when thinking of API’s most people think of RESTfull API’s these days. And altough 3Scale primarily targets RESTfull API’s it is also possible to use other types of API’s as this blog will demonstrate. In this post we will use a Camel JMS subscriber in combination with ActiveMQ and authenticate requests against the 3Scale API Management platform.</description>
+    </item>
+    
+  </channel>
+</rss>

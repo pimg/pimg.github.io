@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Creating an insecure http4 component in Apache Camel // API&#39;s you can trust</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.109.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="apily" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/css/main.min.e84ab12a6413c0736122e3b652a062e117a252e1a1ef3237ff703ae6990f7cdb.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Creating an insecure http4 component in Apache Camel"/>
+<meta name="twitter:description" content="Recently I was struggling with invoking HTTP endpoints using self-signed certificates using the Apache Camel http4 component. The crux of the problem was the fact these certificates change rapidly and are maintained by other teams. Since this was an internal call only, routed through a VPN I decided to approach the problem by disabling the certificate check instead of adding the self-signed certificates to a keystore which I normally do in these situations."/>
+
+    <meta property="og:title" content="Creating an insecure http4 component in Apache Camel" />
+<meta property="og:description" content="Recently I was struggling with invoking HTTP endpoints using self-signed certificates using the Apache Camel http4 component. The crux of the problem was the fact these certificates change rapidly and are maintained by other teams. Since this was an internal call only, routed through a VPN I decided to approach the problem by disabling the certificate check instead of adding the self-signed certificates to a keystore which I normally do in these situations." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://pimg.github.io/posts/2017/02/creating-an-insecure-http4-component-in-apache-camel/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-02-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2017-02-17T00:00:00+00:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="http://pimg.github.io/"><img class="app-header-avatar" src="/avatar.jpg" alt="apily" /></a>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/about/">About</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/resume/">Resume</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/posts/">blog</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/media/">in the media</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/tags/">tags</a>
+      </nav>
+      <p>API&#39;s you can trust</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/pimg" target="_blank" rel="noreferrer noopener me">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>GitHub</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+          <a href="https://nl.linkedin.com/in/pimgaemers" target="_blank" rel="noreferrer noopener me">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
+  <title>LinkedIn</title>
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Creating an insecure http4 component in Apache Camel</h1>
+      <div class="post-meta">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Feb 17, 2017
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          3 min read
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="http://pimg.github.io/tags/apache-camel/">apache-camel</a>
+              <a class="tag" href="http://pimg.github.io/tags/hostnameverification/">hostnameverification</a>
+              <a class="tag" href="http://pimg.github.io/tags/http4/">http4</a>
+              <a class="tag" href="http://pimg.github.io/tags/tls/">tls</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>Recently I was struggling with invoking HTTP endpoints using self-signed certificates using the Apache Camel http4 component. The crux of the problem was the fact these certificates change rapidly and are maintained by other teams. Since this was an internal call only, routed through a VPN I decided  to approach the problem by disabling the certificate check instead of adding the self-signed certificates to a keystore which I normally do in these situations.  So keep in mind, doing this will undermine the security of the TLS connection. And obviously only works with one-way TLS connections.</p>
+<p>It was with disabling the certificate checks in the http4 component that I was struggling so I decided to share what I did with you when I eventually found out the solution.</p>
+<p>A small note, the example provided in this blogpost is using Apache Camel in combination of CDI. But the solution will work equally well with frameworks like Spring or OSGi Blueprint.</p>
+<p>First I created my own instance of the HttpComponent seperating it from the standard http4 component.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomHttp4Component</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@Produces</span> <span style="color:#960050;background-color:#1e0010">   </span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@Named</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;insecurehttps4&#34;</span><span style="color:#f92672">)</span> <span style="color:#960050;background-color:#1e0010">   </span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> HttpComponent <span style="color:#a6e22e">createCustomHttp4Component</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#960050;background-color:#1e0010">   </span> HttpComponent httpComponent <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HttpComponent<span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>In this custom http4 component we have to do two things. First is to change the Certificate HostnameVerifier so the hostname on the self-signed certificate is not causing an exception.</p>
+<p>This is accomplished by setting an instance of the org.apache.http.conn.ssl.AllowAllHostnameVerifier to the http4 component using the setter method setX509HostNameVerifier. Note, the version of Apache Camel I am using (2.17) still requires the now deprecated: org.apache.http.conn.ssl.AllowAllHostnameVerifier newer versions of Apache Camel are using the org.apache.http.conn.ssl.NoopHostnameVerifier.</p>
+<p>This unfortunately was not enough to invoke the endpoint, an empty X509TrustManager was also required. It needs to be empty for our purpose to basically omit the certificate validation checks. For this we needed to extend the X509ExtendedTrustManager and override the methods implementing them as &ldquo;empty&rdquo;. To set our empty thrustmanager on the http4 component we need to wrap it in a TrustManagersParameters class and wrap this into an SSLParameters class before we can add it to the http4 component.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>TrustManagersParameters trustManagersParameters <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TrustManagersParameters<span style="color:#f92672">();</span> 
+</span></span><span style="display:flex;"><span>X509ExtendedTrustManager extendedTrustManager <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> InsecureX509TrustManager<span style="color:#f92672">();</span> 
+</span></span><span style="display:flex;"><span>trustManagersParameters<span style="color:#f92672">.</span><span style="color:#a6e22e">setTrustManager</span><span style="color:#f92672">(</span>extendedTrustManager<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SSLContextParameters sslContextParameters <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SSLContextParameters<span style="color:#f92672">();</span> 
+</span></span><span style="display:flex;"><span>sslContextParameters<span style="color:#f92672">.</span><span style="color:#a6e22e">setTrustManagers</span><span style="color:#f92672">(</span>trustManagersParameters<span style="color:#f92672">);</span> 
+</span></span><span style="display:flex;"><span>httpComponent<span style="color:#f92672">.</span><span style="color:#a6e22e">setSslContextParameters</span><span style="color:#f92672">(</span>sslContextParameters<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>After this we can use our new insecure http4 component in our Camel routes just as the normal http4 component.</p>
+<p>The entire custom http4 component:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> api.integration.components<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.camel.component.http4.HttpComponent<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.camel.util.jsse.SSLContextParameters<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.camel.util.jsse.TrustManagersParameters<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.http.conn.ssl.AllowAllHostnameVerifier<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.enterprise.inject.Produces<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.inject.Named<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.net.ssl.SSLEngine<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.net.ssl.X509ExtendedTrustManager<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.Socket<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.security.cert.CertificateException<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.security.cert.X509Certificate<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomHttp4Component</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Produces</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Named</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;insecurehttps4&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> HttpComponent <span style="color:#a6e22e">createCustomHttp4Component</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        HttpComponent httpComponent <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HttpComponent<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        httpComponent<span style="color:#f92672">.</span><span style="color:#a6e22e">setX509HostnameVerifier</span><span style="color:#f92672">(</span>AllowAllHostnameVerifier<span style="color:#f92672">.</span><span style="color:#a6e22e">INSTANCE</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        TrustManagersParameters trustManagersParameters <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TrustManagersParameters<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        X509ExtendedTrustManager extendedTrustManager <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> InsecureX509TrustManager<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        trustManagersParameters<span style="color:#f92672">.</span><span style="color:#a6e22e">setTrustManager</span><span style="color:#f92672">(</span>extendedTrustManager<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        SSLContextParameters sslContextParameters <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SSLContextParameters<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        sslContextParameters<span style="color:#f92672">.</span><span style="color:#a6e22e">setTrustManagers</span><span style="color:#f92672">(</span>trustManagersParameters<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        httpComponent<span style="color:#f92672">.</span><span style="color:#a6e22e">setSslContextParameters</span><span style="color:#f92672">(</span>sslContextParameters<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> httpComponent<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InsecureX509TrustManager</span> <span style="color:#66d9ef">extends</span> X509ExtendedTrustManager <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">checkClientTrusted</span><span style="color:#f92672">(</span>X509Certificate<span style="color:#f92672">[]</span> x509Certificates<span style="color:#f92672">,</span> String s<span style="color:#f92672">,</span> Socket socket<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> CertificateException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">checkServerTrusted</span><span style="color:#f92672">(</span>X509Certificate<span style="color:#f92672">[]</span> x509Certificates<span style="color:#f92672">,</span> String s<span style="color:#f92672">,</span> Socket socket<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> CertificateException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">checkClientTrusted</span><span style="color:#f92672">(</span>X509Certificate<span style="color:#f92672">[]</span> x509Certificates<span style="color:#f92672">,</span> String s<span style="color:#f92672">,</span> SSLEngine sslEngine<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> CertificateException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">checkServerTrusted</span><span style="color:#f92672">(</span>X509Certificate<span style="color:#f92672">[]</span> x509Certificates<span style="color:#f92672">,</span> String s<span style="color:#f92672">,</span> SSLEngine sslEngine<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> CertificateException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">checkClientTrusted</span><span style="color:#f92672">(</span>X509Certificate<span style="color:#f92672">[]</span> x509Certificates<span style="color:#f92672">,</span> String s<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> CertificateException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">checkServerTrusted</span><span style="color:#f92672">(</span>X509Certificate<span style="color:#f92672">[]</span> x509Certificates<span style="color:#f92672">,</span> String s<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> CertificateException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> X509Certificate<span style="color:#f92672">[]</span> <span style="color:#a6e22e">getAcceptedIssuers</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> X509Certificate<span style="color:#f92672">[</span><span style="color:#ae81ff">0</span><span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div>
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>camel-dataformat on API&#39;s you can trust</title>
+    <link>http://pimg.github.io/tags/camel-dataformat/</link>
+    <description>Recent content in camel-dataformat on API&#39;s you can trust</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Jan 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/tags/camel-dataformat/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Camel setting exchange headers in a custom dataformat</title>
+      <link>http://pimg.github.io/posts/2018/01/camel-setting-exchange-headers-in-a-custom-dataformat/</link>
+      <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2018/01/camel-setting-exchange-headers-in-a-custom-dataformat/</guid>
+      <description>Apache Camel is a great framework with dozens (hundreds even) components, dataformats and expression languages. However one of the thing that makes Camel even greater is the various ways to provide your own customizations to these items. In this blog we are going to create a custom dataformat used in the marshal and unmarshal statements within a Camel route.
+Creating your custom data format is pretty straightforward, all we have to do is provide an implementation of the Dataformat interface which looks like this:</description>
+    </item>
+    
+  </channel>
+</rss>

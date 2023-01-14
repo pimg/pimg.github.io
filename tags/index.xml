@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on API&#39;s you can trust</title>
+    <link>http://pimg.github.io/tags/</link>
+    <description>Recent content in Tags on API&#39;s you can trust</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 22 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>3scale</title>
+      <link>http://pimg.github.io/tags/3scale/</link>
+      <pubDate>Fri, 22 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/3scale/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>apicast</title>
+      <link>http://pimg.github.io/tags/apicast/</link>
+      <pubDate>Fri, 22 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/apicast/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>apicast-policy</title>
+      <link>http://pimg.github.io/tags/apicast-policy/</link>
+      <pubDate>Fri, 22 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/apicast-policy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>development</title>
+      <link>http://pimg.github.io/tags/development/</link>
+      <pubDate>Fri, 22 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lua</title>
+      <link>http://pimg.github.io/tags/lua/</link>
+      <pubDate>Fri, 22 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/lua/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>openresty</title>
+      <link>http://pimg.github.io/tags/openresty/</link>
+      <pubDate>Fri, 22 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/openresty/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>policy</title>
+      <link>http://pimg.github.io/tags/policy/</link>
+      <pubDate>Fri, 22 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/policy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>scaffold</title>
+      <link>http://pimg.github.io/tags/scaffold/</link>
+      <pubDate>Fri, 22 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/scaffold/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>api-gateway</title>
+      <link>http://pimg.github.io/tags/api-gateway/</link>
+      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/api-gateway/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>luajit</title>
+      <link>http://pimg.github.io/tags/luajit/</link>
+      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/luajit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nginx</title>
+      <link>http://pimg.github.io/tags/nginx/</link>
+      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/nginx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>activemq</title>
+      <link>http://pimg.github.io/tags/activemq/</link>
+      <pubDate>Sat, 10 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/activemq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>camel</title>
+      <link>http://pimg.github.io/tags/camel/</link>
+      <pubDate>Sat, 10 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/camel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java-plugin</title>
+      <link>http://pimg.github.io/tags/java-plugin/</link>
+      <pubDate>Sat, 10 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/java-plugin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>camel-dataformat</title>
+      <link>http://pimg.github.io/tags/camel-dataformat/</link>
+      <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/camel-dataformat/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>camel-headers</title>
+      <link>http://pimg.github.io/tags/camel-headers/</link>
+      <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/camel-headers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>camel-message</title>
+      <link>http://pimg.github.io/tags/camel-message/</link>
+      <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/camel-message/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>healthcheck</title>
+      <link>http://pimg.github.io/tags/healthcheck/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/healthcheck/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jmx</title>
+      <link>http://pimg.github.io/tags/jmx/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/jmx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jolokia</title>
+      <link>http://pimg.github.io/tags/jolokia/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/jolokia/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>livelinesprobe</title>
+      <link>http://pimg.github.io/tags/livelinesprobe/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/livelinesprobe/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>readinessprobe</title>
+      <link>http://pimg.github.io/tags/readinessprobe/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/readinessprobe/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>compute-resources</title>
+      <link>http://pimg.github.io/tags/compute-resources/</link>
+      <pubDate>Fri, 25 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/compute-resources/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>http://pimg.github.io/tags/docker/</link>
+      <pubDate>Fri, 25 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>http://pimg.github.io/tags/kubernetes/</link>
+      <pubDate>Fri, 25 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>limits</title>
+      <link>http://pimg.github.io/tags/limits/</link>
+      <pubDate>Fri, 25 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/limits/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>quatas</title>
+      <link>http://pimg.github.io/tags/quatas/</link>
+      <pubDate>Fri, 25 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/quatas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>resource-limits</title>
+      <link>http://pimg.github.io/tags/resource-limits/</link>
+      <pubDate>Fri, 25 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/resource-limits/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>aes-256</title>
+      <link>http://pimg.github.io/tags/aes-256/</link>
+      <pubDate>Mon, 10 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/aes-256/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>aes-256-camel</title>
+      <link>http://pimg.github.io/tags/aes-256-camel/</link>
+      <pubDate>Mon, 10 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/aes-256-camel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>apache-camel</title>
+      <link>http://pimg.github.io/tags/apache-camel/</link>
+      <pubDate>Mon, 10 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/apache-camel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>camel-crypto</title>
+      <link>http://pimg.github.io/tags/camel-crypto/</link>
+      <pubDate>Mon, 10 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/camel-crypto/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>camel-encryption</title>
+      <link>http://pimg.github.io/tags/camel-encryption/</link>
+      <pubDate>Mon, 10 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/camel-encryption/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>crypto</title>
+      <link>http://pimg.github.io/tags/crypto/</link>
+      <pubDate>Mon, 10 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/crypto/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cryptodataformat</title>
+      <link>http://pimg.github.io/tags/cryptodataformat/</link>
+      <pubDate>Mon, 10 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/cryptodataformat/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>custom-splitter</title>
+      <link>http://pimg.github.io/tags/custom-splitter/</link>
+      <pubDate>Fri, 30 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/custom-splitter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>iterator</title>
+      <link>http://pimg.github.io/tags/iterator/</link>
+      <pubDate>Fri, 30 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/iterator/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>splitter</title>
+      <link>http://pimg.github.io/tags/splitter/</link>
+      <pubDate>Fri, 30 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/splitter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>async</title>
+      <link>http://pimg.github.io/tags/async/</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/async/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>async-processor</title>
+      <link>http://pimg.github.io/tags/async-processor/</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/async-processor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>concurrent</title>
+      <link>http://pimg.github.io/tags/concurrent/</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/concurrent/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>processor</title>
+      <link>http://pimg.github.io/tags/processor/</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/processor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>custom-redelivery</title>
+      <link>http://pimg.github.io/tags/custom-redelivery/</link>
+      <pubDate>Thu, 06 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/custom-redelivery/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>custom-retry</title>
+      <link>http://pimg.github.io/tags/custom-retry/</link>
+      <pubDate>Thu, 06 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/custom-retry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>exception-handling</title>
+      <link>http://pimg.github.io/tags/exception-handling/</link>
+      <pubDate>Thu, 06 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/exception-handling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mep</title>
+      <link>http://pimg.github.io/tags/mep/</link>
+      <pubDate>Thu, 06 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/mep/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>redelivery</title>
+      <link>http://pimg.github.io/tags/redelivery/</link>
+      <pubDate>Thu, 06 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/redelivery/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>retry</title>
+      <link>http://pimg.github.io/tags/retry/</link>
+      <pubDate>Thu, 06 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/retry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hostnameverification</title>
+      <link>http://pimg.github.io/tags/hostnameverification/</link>
+      <pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/hostnameverification/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>http4</title>
+      <link>http://pimg.github.io/tags/http4/</link>
+      <pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/http4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tls</title>
+      <link>http://pimg.github.io/tags/tls/</link>
+      <pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/tags/tls/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

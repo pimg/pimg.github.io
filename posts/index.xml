@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on API&#39;s you can trust</title>
+    <link>http://pimg.github.io/posts/</link>
+    <description>Recent content in Posts on API&#39;s you can trust</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 22 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>3scale policy development – part 2 generate a policy scaffold</title>
+      <link>http://pimg.github.io/posts/2019/03/3scale-policy-development-part-2-generate-a-policy-scaffold/</link>
+      <pubDate>Fri, 22 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2019/03/3scale-policy-development-part-2-generate-a-policy-scaffold/</guid>
+      <description>In first part of our multi-part blog series about 3scale policy development we looked into the setup of a development environment. Now we have a functioning development environment we can start the actual development of the 3scale policy. In this part we will take a look and use the scaffolding utility provided by APIcast to generate a policy scaffold.
+The first thing we are going to do is create a new git branch of the APIcast source we have cloned in the previous part.</description>
+    </item>
+    
+    <item>
+      <title>3scale policy development - part 1 setting up a development environment</title>
+      <link>http://pimg.github.io/posts/2019/03/3scale-policy-development-part-1-setting-up-a-development-environment/</link>
+      <pubDate>Fri, 01 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2019/03/3scale-policy-development-part-1-setting-up-a-development-environment/</guid>
+      <description>3scale policy development - part 1 setting up a development environment In this multi part blog series we are going to dive into the development, testing and deployment of a custom 3scale APIcast policy. In this initial part we are going to setup a development environment so we can actually start the development of our policy.
+But before we begin, let’s first take a look what a 3scale APIcast policy is.</description>
+    </item>
+    
+    <item>
+      <title>Authenticating a JMS consumer with 3Scale, Camel and ActiveMQ</title>
+      <link>http://pimg.github.io/posts/2018/03/authenticating-a-jms-consumer-with-3scale-camel-and-activemq/</link>
+      <pubDate>Sat, 10 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2018/03/authenticating-a-jms-consumer-with-3scale-camel-and-activemq/</guid>
+      <description>3Scale is an API Management platform used for authenticating an throttleing API calls among many, many other things. Now when thinking of API’s most people think of RESTfull API’s these days. And altough 3Scale primarily targets RESTfull API’s it is also possible to use other types of API’s as this blog will demonstrate. In this post we will use a Camel JMS subscriber in combination with ActiveMQ and authenticate requests against the 3Scale API Management platform.</description>
+    </item>
+    
+    <item>
+      <title>Camel setting exchange headers in a custom dataformat</title>
+      <link>http://pimg.github.io/posts/2018/01/camel-setting-exchange-headers-in-a-custom-dataformat/</link>
+      <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2018/01/camel-setting-exchange-headers-in-a-custom-dataformat/</guid>
+      <description>Apache Camel is a great framework with dozens (hundreds even) components, dataformats and expression languages. However one of the thing that makes Camel even greater is the various ways to provide your own customizations to these items. In this blog we are going to create a custom dataformat used in the marshal and unmarshal statements within a Camel route.
+Creating your custom data format is pretty straightforward, all we have to do is provide an implementation of the Dataformat interface which looks like this:</description>
+    </item>
+    
+    <item>
+      <title>Openshift Fuse health checks with Jolokia</title>
+      <link>http://pimg.github.io/posts/2017/11/openshift-fuse-health-checks-with-jolokia/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2017/11/openshift-fuse-health-checks-with-jolokia/</guid>
+      <description>I recently ran into a problem where I needed to create an Openshift healthcheck for a Fuse container. Normally all Fuse containers exposed an http endpoint which was used in the healthcheck. However additional security requirements dictated the use of client certificates. Currently it is not possible to create a healthcheck with a two-way-ssl connection.
+As another way to monitor if all Camel routes are started I decided to leverage the JMX beans exposed by Jolokia.</description>
+    </item>
+    
+    <item>
+      <title>Openshift limits explained</title>
+      <link>http://pimg.github.io/posts/2017/08/openshift-limits-explained/</link>
+      <pubDate>Fri, 25 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2017/08/openshift-limits-explained/</guid>
+      <description>Openshift is a Paas platform offered by Red Hat based mainly on Docker and Kubernetes. One of the concepts behind it is that Ops can set boundaries for Dev. For example by providing a list of supported technologies in the form of base images. One other way Ops can further control the Paas cluster is to impose various limits on the components running in Openshift.
+However, Openshift currently has three different ways of setting restrictions on different levels which do interconnect in an implicit way.</description>
+    </item>
+    
+    <item>
+      <title>AES-256 message encryption in Apache Camel</title>
+      <link>http://pimg.github.io/posts/2017/07/aes-256-message-encryption-in-apache-camel/</link>
+      <pubDate>Mon, 10 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2017/07/aes-256-message-encryption-in-apache-camel/</guid>
+      <description>This blog post shows how to encrypt and decrypt the payload of the message using Apache Camel. The cryptografic algorithm used in this example is AES-256 since this was an explicit request from security. The key used in the example was obtained from a keystore.
+For extra security purposes AES encryption can be extended by using a so called Initialization Vector, which is similar as a NONCE a random number used per request.</description>
+    </item>
+    
+    <item>
+      <title>Camel Split using a custom Iterator</title>
+      <link>http://pimg.github.io/posts/2017/06/camel-split-using-a-custom-iterator/</link>
+      <pubDate>Fri, 30 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2017/06/camel-split-using-a-custom-iterator/</guid>
+      <description>One of the more commonly used EIP’s in Camel is the Splitter, you can find the documentation here http://camel.apache.org/splitter.html
+Usually the splitter is used for tokenizing some message or splitting collections into single messages. But what if you need something more specific? It is good to know that the splitter can either split on Java collection types as well as Iterators. In this blog we are going to create a custom Iterator helper class and method.</description>
+    </item>
+    
+    <item>
+      <title>Playing around with Camel AsyncProcessor</title>
+      <link>http://pimg.github.io/posts/2017/05/playing-around-with-camel-asyncprocessor/</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2017/05/playing-around-with-camel-asyncprocessor/</guid>
+      <description>One of the most frequently used constructs in Apache Camel is the Processor (http://camel.apache.org/processor.html), it is used ofter for invoking custom code or performing message translations. The API of the processor is very clear and well documented. As are numerous examples available for using a Camel Processor. The lesser known brother of the Processor is the AsyncProcessor (http://camel.apache.org/asynchronous-processing.html) which is less documented and a less frequently used. Mainly because the AsyncProcessor is mainly targeted for Camel Component developers.</description>
+    </item>
+    
+    <item>
+      <title>Apache Camel - Dynamic redelivery based on MEP</title>
+      <link>http://pimg.github.io/posts/2017/04/apache-camel-dynamic-redelivery-based-on-mep/</link>
+      <pubDate>Thu, 06 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2017/04/apache-camel-dynamic-redelivery-based-on-mep/</guid>
+      <description>The exception handling and retry mechanisms in Apache Camel are quite extensive. In this blogpost we are going to take a look at customizing the retry based on a predicate implementation of our own thereby enabling really fine grained retry logic.
+In our example we are going to look at the MEP of the exchange, whenever it is inOnly we are going to retry since no synchronous subscriber is waiting for the response.</description>
+    </item>
+    
+    <item>
+      <title>Creating an insecure http4 component in Apache Camel</title>
+      <link>http://pimg.github.io/posts/2017/02/creating-an-insecure-http4-component-in-apache-camel/</link>
+      <pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2017/02/creating-an-insecure-http4-component-in-apache-camel/</guid>
+      <description>Recently I was struggling with invoking HTTP endpoints using self-signed certificates using the Apache Camel http4 component. The crux of the problem was the fact these certificates change rapidly and are maintained by other teams. Since this was an internal call only, routed through a VPN I decided to approach the problem by disabling the certificate check instead of adding the self-signed certificates to a keystore which I normally do in these situations.</description>
+    </item>
+    
+  </channel>
+</rss>

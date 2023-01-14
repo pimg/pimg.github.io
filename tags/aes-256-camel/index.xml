@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>aes-256-camel on API&#39;s you can trust</title>
+    <link>http://pimg.github.io/tags/aes-256-camel/</link>
+    <description>Recent content in aes-256-camel on API&#39;s you can trust</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 10 Jul 2017 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/tags/aes-256-camel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AES-256 message encryption in Apache Camel</title>
+      <link>http://pimg.github.io/posts/2017/07/aes-256-message-encryption-in-apache-camel/</link>
+      <pubDate>Mon, 10 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2017/07/aes-256-message-encryption-in-apache-camel/</guid>
+      <description>This blog post shows how to encrypt and decrypt the payload of the message using Apache Camel. The cryptografic algorithm used in this example is AES-256 since this was an explicit request from security. The key used in the example was obtained from a keystore.
+For extra security purposes AES encryption can be extended by using a so called Initialization Vector, which is similar as a NONCE a random number used per request.</description>
+    </item>
+    
+  </channel>
+</rss>

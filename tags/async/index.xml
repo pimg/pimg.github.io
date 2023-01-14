@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>async on API&#39;s you can trust</title>
+    <link>http://pimg.github.io/tags/async/</link>
+    <description>Recent content in async on API&#39;s you can trust</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 26 May 2017 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/tags/async/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Playing around with Camel AsyncProcessor</title>
+      <link>http://pimg.github.io/posts/2017/05/playing-around-with-camel-asyncprocessor/</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2017/05/playing-around-with-camel-asyncprocessor/</guid>
+      <description>One of the most frequently used constructs in Apache Camel is the Processor (http://camel.apache.org/processor.html), it is used ofter for invoking custom code or performing message translations. The API of the processor is very clear and well documented. As are numerous examples available for using a Camel Processor. The lesser known brother of the Processor is the AsyncProcessor (http://camel.apache.org/asynchronous-processing.html) which is less documented and a less frequently used. Mainly because the AsyncProcessor is mainly targeted for Camel Component developers.</description>
+    </item>
+    
+  </channel>
+</rss>

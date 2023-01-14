@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Apache Camel - Dynamic redelivery based on MEP // API&#39;s you can trust</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.109.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="apily" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/css/main.min.e84ab12a6413c0736122e3b652a062e117a252e1a1ef3237ff703ae6990f7cdb.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Apache Camel - Dynamic redelivery based on MEP"/>
+<meta name="twitter:description" content="The exception handling and retry mechanisms in Apache Camel are quite extensive. In this blogpost we are going to take a look at customizing the retry based on a predicate implementation of our own thereby enabling really fine grained retry logic.
+In our example we are going to look at the MEP of the exchange, whenever it is inOnly we are going to retry since no synchronous subscriber is waiting for the response."/>
+
+    <meta property="og:title" content="Apache Camel - Dynamic redelivery based on MEP" />
+<meta property="og:description" content="The exception handling and retry mechanisms in Apache Camel are quite extensive. In this blogpost we are going to take a look at customizing the retry based on a predicate implementation of our own thereby enabling really fine grained retry logic.
+In our example we are going to look at the MEP of the exchange, whenever it is inOnly we are going to retry since no synchronous subscriber is waiting for the response." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://pimg.github.io/posts/2017/04/apache-camel-dynamic-redelivery-based-on-mep/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-04-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2017-04-06T00:00:00+00:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="http://pimg.github.io/"><img class="app-header-avatar" src="/avatar.jpg" alt="apily" /></a>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/about/">About</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/resume/">Resume</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/posts/">blog</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/media/">in the media</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/tags/">tags</a>
+      </nav>
+      <p>API&#39;s you can trust</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/pimg" target="_blank" rel="noreferrer noopener me">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>GitHub</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+          <a href="https://nl.linkedin.com/in/pimgaemers" target="_blank" rel="noreferrer noopener me">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
+  <title>LinkedIn</title>
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Apache Camel - Dynamic redelivery based on MEP</h1>
+      <div class="post-meta">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Apr 6, 2017
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="http://pimg.github.io/tags/apache-camel/">apache-camel</a>
+              <a class="tag" href="http://pimg.github.io/tags/camel/">camel</a>
+              <a class="tag" href="http://pimg.github.io/tags/custom-redelivery/">custom-redelivery</a>
+              <a class="tag" href="http://pimg.github.io/tags/custom-retry/">custom-retry</a>
+              <a class="tag" href="http://pimg.github.io/tags/exception-handling/">exception-handling</a>
+              <a class="tag" href="http://pimg.github.io/tags/mep/">mep</a>
+              <a class="tag" href="http://pimg.github.io/tags/redelivery/">redelivery</a>
+              <a class="tag" href="http://pimg.github.io/tags/retry/">retry</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>The exception handling and retry mechanisms in Apache Camel are quite extensive. In this blogpost we are going to take a look at customizing the retry based on a predicate implementation of our own thereby enabling really fine grained retry logic.</p>
+<p>In our example we are going to look at the MEP of the exchange, whenever it is inOnly we are going to retry since no synchronous subscriber is waiting for the response. Conversely, when the MEP of the exchange is inOut we are not going to retry and immediately send back an error. Think fail fast en stuff.</p>
+<p>Like mentioned above we can enable this by implementing the Predicate interface from Apache Camel.</p>
+<p>The entire class looks like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> api.integration.redelivery<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.camel.Exchange<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.camel.ExchangePattern<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.camel.Predicate<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.camel.component.properties.PropertiesComponent<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.inject.Inject<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.inject.Named<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Named</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InvokeEndpointsRedeliveryPolicy</span> <span style="color:#66d9ef">implements</span> Predicate<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">@Inject</span>
+</span></span><span style="display:flex;"><span> PropertiesComponent properties<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">private</span> Integer MAX_REDELIVERIES<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Returns a Boolean whether or not a redelivery must be executed.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Whether or not retries should be executed are dependend on two criteria: the MEP of the exchange and the max retries
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * If the MEP is inOnly a response is not required immediately and retries can commense up until the max retries
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @implements org.apache.camel.Predicate
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param exchange The Camel Exchange is used as a parameter, this is dictated by the Predicate interface
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return Boolean if a redelivery should be executed.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">matches</span><span style="color:#f92672">(</span>Exchange exchange<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>   setMaxRedeliveries<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">//no redelivery is the default
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>   Boolean shouldRedeliver <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>   ExchangePattern exchangePattern <span style="color:#f92672">=</span> exchange<span style="color:#f92672">.</span><span style="color:#a6e22e">getPattern</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>   Boolean isInOut <span style="color:#f92672">=</span> exchangePattern<span style="color:#f92672">.</span><span style="color:#a6e22e">isOutCapable</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>   Integer redeliveryCounter <span style="color:#f92672">=</span> getRedeliveryCounter<span style="color:#f92672">(</span>exchange<span style="color:#f92672">.</span><span style="color:#a6e22e">getIn</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getHeader</span><span style="color:#f92672">(</span>Exchange<span style="color:#f92672">.</span><span style="color:#a6e22e">REDELIVERY_COUNTER</span><span style="color:#f92672">,</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">if</span><span style="color:#f92672">(!</span>isInOut <span style="color:#f92672">&amp;&amp;</span> redeliveryCounter <span style="color:#f92672">&lt;</span> MAX_REDELIVERIES<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>    shouldRedeliver <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> shouldRedeliver<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setMaxRedeliveries</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>   String retryAmountProperty <span style="color:#f92672">=</span> properties<span style="color:#f92672">.</span><span style="color:#a6e22e">parseUri</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;{{health-api.invokeEndpoints.retryAmount}}&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>   MAX_REDELIVERIES <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Integer<span style="color:#f92672">(</span>retryAmountProperty<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>     MAX_REDELIVERIES <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">private</span> Integer <span style="color:#a6e22e">getRedeliveryCounter</span><span style="color:#f92672">(</span>Integer redeliveryCounterHeader<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>   Integer redeliveryCounter <span style="color:#f92672">=</span> redeliveryCounterHeader<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>redeliveryCounter <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>    redeliveryCounter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> redeliveryCounter<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">private</span> Boolean <span style="color:#a6e22e">getRetryProperty</span><span style="color:#f92672">(</span>Boolean retryProperty<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>   Boolean retry <span style="color:#f92672">=</span> retryProperty<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>retry <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>     retry <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">return</span> retry<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>In order to use our predicate in our Camel Route for determining the retry use the &lsquo;retryWhile&rsquo; statement:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">configure</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> from<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;direct:start&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">routeId</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;my-dynamic-retry-route&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">.</span><span style="color:#a6e22e">onException</span><span style="color:#f92672">(</span>Exception<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">).</span><span style="color:#a6e22e">redeliveryDelay</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1500</span><span style="color:#f92672">).</span><span style="color:#a6e22e">retryWhile</span><span style="color:#f92672">(</span>redeliveryPolicy<span style="color:#f92672">).</span><span style="color:#a6e22e">continued</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">).</span><span style="color:#a6e22e">end</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">...</span>
+</span></span></code></pre></div>
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

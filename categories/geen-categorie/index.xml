@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>geen-categorie on API&#39;s you can trust</title>
+    <link>http://pimg.github.io/categories/geen-categorie/</link>
+    <description>Recent content in geen-categorie on API&#39;s you can trust</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 17 Feb 2017 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/categories/geen-categorie/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Creating an insecure http4 component in Apache Camel</title>
+      <link>http://pimg.github.io/posts/2017/02/creating-an-insecure-http4-component-in-apache-camel/</link>
+      <pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2017/02/creating-an-insecure-http4-component-in-apache-camel/</guid>
+      <description>Recently I was struggling with invoking HTTP endpoints using self-signed certificates using the Apache Camel http4 component. The crux of the problem was the fact these certificates change rapidly and are maintained by other teams. Since this was an internal call only, routed through a VPN I decided to approach the problem by disabling the certificate check instead of adding the self-signed certificates to a keystore which I normally do in these situations.</description>
+    </item>
+    
+  </channel>
+</rss>

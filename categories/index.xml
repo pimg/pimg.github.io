@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on API&#39;s you can trust</title>
+    <link>http://pimg.github.io/categories/</link>
+    <description>Recent content in Categories on API&#39;s you can trust</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 22 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>api-management</title>
+      <link>http://pimg.github.io/categories/api-management/</link>
+      <pubDate>Fri, 22 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/categories/api-management/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jboss-fuse</title>
+      <link>http://pimg.github.io/categories/jboss-fuse/</link>
+      <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/categories/jboss-fuse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>openshift</title>
+      <link>http://pimg.github.io/categories/openshift/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/categories/openshift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>geen-categorie</title>
+      <link>http://pimg.github.io/categories/geen-categorie/</link>
+      <pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/categories/geen-categorie/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Authenticating a JMS consumer with 3Scale, Camel and ActiveMQ // API&#39;s you can trust</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.109.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="apily" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/css/main.min.e84ab12a6413c0736122e3b652a062e117a252e1a1ef3237ff703ae6990f7cdb.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Authenticating a JMS consumer with 3Scale, Camel and ActiveMQ"/>
+<meta name="twitter:description" content="3Scale is an API Management platform used for authenticating an throttleing API calls among many, many other things. Now when thinking of API’s most people think of RESTfull API’s these days. And altough 3Scale primarily targets RESTfull API’s it is also possible to use other types of API’s as this blog will demonstrate. In this post we will use a Camel JMS subscriber in combination with ActiveMQ and authenticate requests against the 3Scale API Management platform."/>
+
+    <meta property="og:title" content="Authenticating a JMS consumer with 3Scale, Camel and ActiveMQ" />
+<meta property="og:description" content="3Scale is an API Management platform used for authenticating an throttleing API calls among many, many other things. Now when thinking of API’s most people think of RESTfull API’s these days. And altough 3Scale primarily targets RESTfull API’s it is also possible to use other types of API’s as this blog will demonstrate. In this post we will use a Camel JMS subscriber in combination with ActiveMQ and authenticate requests against the 3Scale API Management platform." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://pimg.github.io/posts/2018/03/authenticating-a-jms-consumer-with-3scale-camel-and-activemq/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-03-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-03-10T00:00:00+00:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="http://pimg.github.io/"><img class="app-header-avatar" src="/avatar.jpg" alt="apily" /></a>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/about/">About</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/resume/">Resume</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/posts/">blog</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/media/">in the media</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/tags/">tags</a>
+      </nav>
+      <p>API&#39;s you can trust</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/pimg" target="_blank" rel="noreferrer noopener me">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>GitHub</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+          <a href="https://nl.linkedin.com/in/pimgaemers" target="_blank" rel="noreferrer noopener me">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
+  <title>LinkedIn</title>
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Authenticating a JMS consumer with 3Scale, Camel and ActiveMQ</h1>
+      <div class="post-meta">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Mar 10, 2018
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          4 min read
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="http://pimg.github.io/tags/3scale/">3scale</a>
+              <a class="tag" href="http://pimg.github.io/tags/activemq/">activemq</a>
+              <a class="tag" href="http://pimg.github.io/tags/camel/">camel</a>
+              <a class="tag" href="http://pimg.github.io/tags/java-plugin/">java-plugin</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>3Scale is an API Management platform used for authenticating an throttleing API calls among many, many other things. Now when thinking of API’s most people think of RESTfull API’s these days. And altough 3Scale primarily targets RESTfull API’s it is also possible to use other types of API’s as this blog will demonstrate. In this post we will use a Camel JMS subscriber in combination with ActiveMQ and authenticate requests against the 3Scale API Management platform.</p>
+<p>First let’s look at the 3Scale setup.</p>
+<p>The first step is to create a new service, however normally one would select one of the APICast API Gateway options for handling the API traffic. This time however we are selecting the Java plugin option, since Camel is based on Java. Obviously the same principles could be applied in one of the other programming languages for which plugins are available.   
+<img src="images/3scale-integration-and-configuration-java-plugin.png" alt=""></p>
+<p>The next step is to go to the integration page. But, where normally we would configure the mapping rules of our RESTfull API, we now get instructions to implement the Java plugin.
+<img src="images/3scale-java-plugin-integration-page.png" alt=""></p>
+<p> </p>
+<p>It is good to note the rest of the 3Scale setup is completely default. De default Hits metric is used as shown below, although custom methods could easily be defined.</p>
+<p><img src="images/3scale-definition.png" alt=""></p>
+<p> 
+For this example one application plan with a rate limit has been configured.</p>
+<p><img src="images/3scale-application-plan.png" alt=""></p>
+<h1 id="integrating-the-3scale-java-plugin-with-apache-camel">Integrating the 3Scale Java plugin with Apache Camel</h1>
+<p>Apache Camel has numerous ways of integrating custom code and creating customizations. For this example a custom processor is created, although a bean, or component would work also.</p>
+<p>The first step is to import the 3Scale java plugin dependency via Maven, by adding the following to the pom.xml file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;groupId&gt;</span>net.3scale<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;artifactId&gt;</span>3scale-api<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;version&gt;</span>3.0.4<span style="color:#f92672">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><p>Now we can integrate the 3Scale Java plugin in our Camel processor, which is going to retrieve the 3Scale appId and appKey, used for authentication from JMS headers. With the appId and appKey the 3Scale API is called for authentication. However this is not the only thing we need to pass in our request towards 3Scale. To authenticate against 3Scale selecting the correct 3Scale account and service we need to pass the ServiceId of the service we created above and pass the accompanying service token. Since these are fixed per environment we retrieve these values from a properties file. Finally we need to increment the hits metric. Once all these parameters are passed in the request we can invoke 3Scale and authenticate our request. If we are authenticated and authorized for this API we finish the processor, following the Camel Route execution. However, when we are not authenticated we are going to stop the route and any further processing. The entire processor looks like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> nl.rubix.eos.api.camelthreescale.processor<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.camel.Exchange<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.camel.Processor<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.camel.RuntimeCamelException<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.deltaspike.core.api.config.ConfigProperty<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> threescale.v3.api.AuthorizeResponse<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> threescale.v3.api.ParameterMap<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> threescale.v3.api.ServerError<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> threescale.v3.api.ServiceApi<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> threescale.v3.api.impl.ServiceApiDriver<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.inject.Inject<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.inject.Named<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Named</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;authRepProcessor&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AuthRepProcessor</span> <span style="color:#66d9ef">implements</span> Processor <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@Inject</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@ConfigProperty</span><span style="color:#f92672">(</span>name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;SERVICE_TOKEN&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> String serviceToken<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@Inject</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@ConfigProperty</span><span style="color:#f92672">(</span>name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;SERVICE_ID&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> String serviceId<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">process</span><span style="color:#f92672">(</span>Exchange exchange<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    String appId <span style="color:#f92672">=</span> exchange<span style="color:#f92672">.</span><span style="color:#a6e22e">getIn</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getHeader</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;appId&#34;</span><span style="color:#f92672">,</span> String<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    String appKey <span style="color:#f92672">=</span> exchange<span style="color:#f92672">.</span><span style="color:#a6e22e">getIn</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getHeader</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;appKey&#34;</span><span style="color:#f92672">,</span> String<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    AuthorizeResponse authzResponse <span style="color:#f92672">=</span> authrep<span style="color:#f92672">(</span>createParametersMap<span style="color:#f92672">(</span>appId<span style="color:#f92672">,</span> appKey<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>authzResponse<span style="color:#f92672">.</span><span style="color:#a6e22e">success</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      exchange<span style="color:#f92672">.</span><span style="color:#a6e22e">setProperty</span><span style="color:#f92672">(</span>Exchange<span style="color:#f92672">.</span><span style="color:#a6e22e">ROUTE_STOP</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>      exchange<span style="color:#f92672">.</span><span style="color:#a6e22e">getIn</span><span style="color:#f92672">().</span><span style="color:#a6e22e">setHeader</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;authz:errorCode&#34;</span><span style="color:#f92672">,</span> authzResponse<span style="color:#f92672">.</span><span style="color:#a6e22e">getErrorCode</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>      exchange<span style="color:#f92672">.</span><span style="color:#a6e22e">getIn</span><span style="color:#f92672">().</span><span style="color:#a6e22e">setHeader</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;authz:reason&#34;</span><span style="color:#f92672">,</span> authzResponse<span style="color:#f92672">.</span><span style="color:#a6e22e">getReason</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> ParameterMap <span style="color:#a6e22e">createParametersMap</span><span style="color:#f92672">(</span>String appId<span style="color:#f92672">,</span> String appKey<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    ParameterMap params <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ParameterMap<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    params<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;app_id&#34;</span><span style="color:#f92672">,</span> appId<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    params<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;app_key&#34;</span><span style="color:#f92672">,</span> appKey<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    ParameterMap usage <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ParameterMap<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    usage<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hits&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    params<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;usage&#34;</span><span style="color:#f92672">,</span> usage<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> params<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> AuthorizeResponse <span style="color:#a6e22e">authrep</span><span style="color:#f92672">(</span>ParameterMap params<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    ServiceApi serviceApi <span style="color:#f92672">=</span> ServiceApiDriver<span style="color:#f92672">.</span><span style="color:#a6e22e">createApi</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    AuthorizeResponse response <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      response <span style="color:#f92672">=</span> serviceApi<span style="color:#f92672">.</span><span style="color:#a6e22e">authrep</span><span style="color:#f92672">(</span>serviceToken<span style="color:#f92672">,</span> serviceId<span style="color:#f92672">,</span> params<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>ServerError serverError<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      serverError<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> RuntimeCamelException<span style="color:#f92672">(</span>serverError<span style="color:#f92672">.</span><span style="color:#a6e22e">getMessage</span><span style="color:#f92672">(),</span> serverError<span style="color:#f92672">.</span><span style="color:#a6e22e">getCause</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> response<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>We simply use this processor in our Camel route to add the 3Scale functionality:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> nl.rubix.eos.api.camelthreescale<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> io.fabric8.annotations.Alias<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.activemq.camel.component.ActiveMQComponent<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.camel.builder.RouteBuilder<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.camel.cdi.ContextName<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.inject.Inject<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@ContextName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;activemq-camel-api&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ActiveMqCamelApi</span> <span style="color:#66d9ef">extends</span> RouteBuilder<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@Inject</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@Alias</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jms&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">private</span> ActiveMQComponent activeMQComponent<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">configure</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      from<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jms:queue:test&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">.</span><span style="color:#a6e22e">log</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;received message&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">.</span><span style="color:#a6e22e">process</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;authRepProcessor&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">.</span><span style="color:#a6e22e">log</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;request authenticated and authorized&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>When looking at the logs we can see the request is authenticated when we send a request with the correct appId and appKey in the JMS headers. When looking at the logs we can see the request is passing the processor:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>2018-03-10 20:28:40,294 <span style="color:#f92672">[</span>cdi.Main.main<span style="color:#f92672">()]</span> INFO  DefaultCamelContext            - Route: route1 started and consuming from: Endpoint<span style="color:#f92672">[</span>jms://queue:test<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>2018-03-10 20:28:40,295 <span style="color:#f92672">[</span>cdi.Main.main<span style="color:#f92672">()]</span> INFO  DefaultCamelContext            - Total <span style="color:#ae81ff">1</span> routes, of which <span style="color:#ae81ff">1</span> are started.
+</span></span><span style="display:flex;"><span>2018-03-10 20:28:40,295 <span style="color:#f92672">[</span>cdi.Main.main<span style="color:#f92672">()]</span> INFO  DefaultCamelContext            - Apache Camel 2.17.0.redhat-630187 <span style="color:#f92672">(</span>CamelContext: activemq-camel-api<span style="color:#f92672">)</span> started in 0.512 seconds
+</span></span><span style="display:flex;"><span>2018-03-10 20:28:40,318 <span style="color:#f92672">[</span>cdi.Main.main<span style="color:#f92672">()]</span> INFO  Bootstrap                      - WELD-ENV-002003: Weld SE container STATIC_INSTANCE initialized
+</span></span><span style="display:flex;"><span>2018-03-10 20:29:37,157 <span style="color:#f92672">[</span>sConsumer<span style="color:#f92672">[</span>test<span style="color:#f92672">]]</span> INFO  route1                         - received message
+</span></span><span style="display:flex;"><span>2018-03-10 20:29:38,307 <span style="color:#f92672">[</span>sConsumer<span style="color:#f92672">[</span>test<span style="color:#f92672">]]</span> INFO  route1                         - request authenticated and authorized
+</span></span></code></pre></div><p>And off course we can see the metrics in 3Scale:</p>
+<p><img src="images/3scale-analytics.png?w=645" alt=""></p>
+<p>Now this processor discards the message when the authentication by 3Scale fails, but it is off course possible to send the unauthorized messages towards a special error queue, or make the entire route transactional and simply do not send an ACK when authentication fails.</p>
+<p>The entire code of this example is available on Github. <a href="https://github.com/pimg/activemq-camel-3scale" target="_blank" rel="noopener"><img src="images/github-mark-120px-plus.png" alt=""></a></p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mep on API&#39;s you can trust</title>
+    <link>http://pimg.github.io/tags/mep/</link>
+    <description>Recent content in mep on API&#39;s you can trust</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 06 Apr 2017 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/tags/mep/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Apache Camel - Dynamic redelivery based on MEP</title>
+      <link>http://pimg.github.io/posts/2017/04/apache-camel-dynamic-redelivery-based-on-mep/</link>
+      <pubDate>Thu, 06 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2017/04/apache-camel-dynamic-redelivery-based-on-mep/</guid>
+      <description>The exception handling and retry mechanisms in Apache Camel are quite extensive. In this blogpost we are going to take a look at customizing the retry based on a predicate implementation of our own thereby enabling really fine grained retry logic.
+In our example we are going to look at the MEP of the exchange, whenever it is inOnly we are going to retry since no synchronous subscriber is waiting for the response.</description>
+    </item>
+    
+  </channel>
+</rss>

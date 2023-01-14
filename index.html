@@ -1,0 +1,190 @@
+<!doctype html>
+<script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/plugins/wordCloud.js"></script>
+<script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+<script src="js/wordcloud.js"></script>
+<link rel="stylesheet" href="css/wordcloud.css">
+<html lang="en-us">
+  <head>
+    <title>API&#39;s you can trust</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.109.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="apily" />
+    <meta name="description" content="API&#39;s you can trust" />
+    <link rel="stylesheet" href="/css/main.min.e84ab12a6413c0736122e3b652a062e117a252e1a1ef3237ff703ae6990f7cdb.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="API&#39;s you can trust"/>
+<meta name="twitter:description" content="API&#39;s you can trust"/>
+
+    <meta property="og:title" content="API&#39;s you can trust" />
+<meta property="og:description" content="API&#39;s you can trust" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://pimg.github.io/" />
+
+
+  </head>
+  <style>
+    .css-typing p {
+      border-right: .15em solid #689d6a;
+      font-family: "Courier";
+      font-size: 24px;
+      white-space: nowrap;
+      overflow: hidden;
+      margin: auto;
+      width: 50%;
+      text-align: left;
+    }
+    .css-typing p:nth-child(1) {
+      width: 4em;
+      font-size: 6rem;
+      -webkit-animation: type 1s steps(20, end);
+      animation: type 1s steps(40, end);
+      -webkit-animation-fill-mode: forwards;
+      animation-fill-mode: forwards;
+      color: #b57614;
+    }
+
+    .css-typing p:nth-child(2) {
+      width: 20em;
+      opacity: 0;
+      -webkit-animation: type3 2s steps(60, end), blink .5s step-end infinite alternate;
+      animation: type3 2s steps(40, end), blink .5s step-end infinite alternate;
+      -webkit-animation-delay: 2s;
+      animation-delay: 2s;
+      -webkit-animation-fill-mode: forwards;
+      animation-fill-mode: forwards;
+      color: #689d6a;
+    }
+
+    @keyframes type {
+      0% {
+        width: 0;
+      }
+      99.9% {
+        border-right: .35em solid #689d6a;
+      }
+      100% {
+        border: none;
+      }
+    }
+
+    @-webkit-keyframes type {
+      0% {
+        width: 0;
+      }
+      99.9% {
+        border-right: .35em solid #689d6a;
+      }
+      100% {
+        border: none;
+      }
+    }
+
+
+    @keyframes type3 {
+      0% {
+        width: 0;
+      }
+      1% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 1;
+        border-right: .35em solid #689d6a;
+      }
+    }
+
+    @-webkit-keyframes type3 {
+      0% {
+        width: 0;
+      }
+      1% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes blink {
+      50% {
+        border-color: transparent;
+      }
+    }
+    @-webkit-keyframes blink {
+      50% {
+        border-color: tranparent;
+      }
+    }
+    .wordcloud img {
+      width: 100%;
+      height: auto;
+      margin-top: 10%;
+    }
+
+</style>
+  <body>
+    <header class="app-header">
+      <a href="http://pimg.github.io/"><img class="app-header-avatar" src="/avatar.jpg" alt="apily" /></a>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/about/">About</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/resume/">Resume</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/posts/">blog</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/media/">in the media</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/tags/">tags</a>
+      </nav>
+      <p>API&#39;s you can trust</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/pimg" target="_blank" rel="noreferrer noopener me">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>GitHub</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+          <a href="https://nl.linkedin.com/in/pimgaemers" target="_blank" rel="noreferrer noopener me">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
+  <title>LinkedIn</title>
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      <div class="css-typing">
+        <p>
+          Apily
+        </p>
+        <p>
+          $> Building API's you can trust.
+        </p>
+      </div>
+      <ul class="cloud" role="navigation">
+        <li><a href="#" data-weight="4">API Strategy</a></li>
+        <li><a href="#" data-weight="9">API Security</a></li>
+        <li><a href="#" data-weight="9">API Developmemt</a></li>
+        <li><a href="#" data-weight="7">API Design</a></li>
+        <li><a href="#" data-weight="5">Developer Experience</a></li>
+        <li><a href="#" data-weight="4">API Management</a></li>
+      </ul>
+    </main>
+  </body>
+</html>

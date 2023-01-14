@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>scaffold on API&#39;s you can trust</title>
+    <link>http://pimg.github.io/tags/scaffold/</link>
+    <description>Recent content in scaffold on API&#39;s you can trust</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 22 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/tags/scaffold/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>3scale policy development – part 2 generate a policy scaffold</title>
+      <link>http://pimg.github.io/posts/2019/03/3scale-policy-development-part-2-generate-a-policy-scaffold/</link>
+      <pubDate>Fri, 22 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2019/03/3scale-policy-development-part-2-generate-a-policy-scaffold/</guid>
+      <description>In first part of our multi-part blog series about 3scale policy development we looked into the setup of a development environment. Now we have a functioning development environment we can start the actual development of the 3scale policy. In this part we will take a look and use the scaffolding utility provided by APIcast to generate a policy scaffold.
+The first thing we are going to do is create a new git branch of the APIcast source we have cloned in the previous part.</description>
+    </item>
+    
+  </channel>
+</rss>

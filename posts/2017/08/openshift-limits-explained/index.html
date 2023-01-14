@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Openshift limits explained // API&#39;s you can trust</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.109.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="apily" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/css/main.min.e84ab12a6413c0736122e3b652a062e117a252e1a1ef3237ff703ae6990f7cdb.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Openshift limits explained"/>
+<meta name="twitter:description" content="Openshift is a Paas platform offered by Red Hat based mainly on Docker and Kubernetes. One of the concepts behind it is that Ops can set boundaries for Dev. For example by providing a list of supported technologies in the form of base images. One other way Ops can further control the Paas cluster is to impose various limits on the components running in Openshift.
+However, Openshift currently has three different ways of setting restrictions on different levels which do interconnect in an implicit way."/>
+
+    <meta property="og:title" content="Openshift limits explained" />
+<meta property="og:description" content="Openshift is a Paas platform offered by Red Hat based mainly on Docker and Kubernetes. One of the concepts behind it is that Ops can set boundaries for Dev. For example by providing a list of supported technologies in the form of base images. One other way Ops can further control the Paas cluster is to impose various limits on the components running in Openshift.
+However, Openshift currently has three different ways of setting restrictions on different levels which do interconnect in an implicit way." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://pimg.github.io/posts/2017/08/openshift-limits-explained/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-08-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2017-08-25T00:00:00+00:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="http://pimg.github.io/"><img class="app-header-avatar" src="/avatar.jpg" alt="apily" /></a>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/about/">About</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/resume/">Resume</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/posts/">blog</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/media/">in the media</a>
+            <BR>
+          
+          <a class="app-header-menu-item" href="/tags/">tags</a>
+      </nav>
+      <p>API&#39;s you can trust</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/pimg" target="_blank" rel="noreferrer noopener me">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>GitHub</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg>
+          </a>
+        
+          <a href="https://nl.linkedin.com/in/pimgaemers" target="_blank" rel="noreferrer noopener me">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
+  <title>LinkedIn</title>
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+</svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Openshift limits explained</h1>
+      <div class="post-meta">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Aug 25, 2017
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          6 min read
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="http://pimg.github.io/tags/compute-resources/">compute-resources</a>
+              <a class="tag" href="http://pimg.github.io/tags/docker/">docker</a>
+              <a class="tag" href="http://pimg.github.io/tags/kubernetes/">kubernetes</a>
+              <a class="tag" href="http://pimg.github.io/tags/limits/">limits</a>
+              <a class="tag" href="http://pimg.github.io/tags/quatas/">quatas</a>
+              <a class="tag" href="http://pimg.github.io/tags/resource-limits/">resource-limits</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>Openshift is a Paas platform offered by Red Hat based mainly on Docker and Kubernetes. One of the concepts behind it is that Ops can set boundaries for Dev. For example by providing a list of supported technologies in the form of base images. One other way Ops can further control the Paas cluster is to impose various limits on the components running in Openshift.</p>
+<p><img src="images/devopsomg.png" alt=""></p>
+<p>However, Openshift currently has three different ways of setting restrictions on different levels which do interconnect in an implicit way. Which sometimes can become difficult to setup in a proper way and people end up with Pods never leaving the <strong>“Pending”</strong> state. So in this blogpost we are going to take look at the different limits or restrictions available in Openshift and how they influence each other.</p>
+<p>But to understand the restrictions better it is good to know some basic Openshift concepts and components on which these limits act. Although I highly recommend to start experimenting with restrictions and limits after you become familiar with Openshift.</p>
+<p>Below are the components of Openshift influenced by the restrictions. (source: <a href="https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/index.html" target="_blank" rel="noopener">https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/index.html</a>)</p>
+<h3 id="containers">Containers</h3>
+<p>The basic units of OpenShift applications are called containers. <a href="https://access.redhat.com/articles/1353593" target="_blank" rel="noopener">Linux container technologies</a> are lightweight mechanisms for isolating running processes so that they are limited to interacting with only their designated resources. Many application instances can be running in containers on a single host without visibility into each others&rsquo; processes, files, network, and so on. Typically, each container provides a single service (often called a &ldquo;micro-service&rdquo;), such as a web server or a database, though containers can be used for arbitrary workloads.</p>
+<p>The Linux kernel has been incorporating capabilities for container technologies for years. More recently the <a href="https://www.docker.com/whatisdocker/" target="_blank" rel="noopener">Docker project</a> has developed a convenient management interface for Linux containers on a host. OpenShift and Kubernetes add the ability to orchestrate Docker containers across multi-host installations.</p>
+<h3 id="pods">Pods</h3>
+<p>OpenShift leverages the Kubernetes concept of a <strong>pod</strong>, which is one or more <a href="https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/containers_and_images.html#containers" target="_blank" rel="noopener">containers</a> deployed together on one host, and the smallest compute unit that can be defined, deployed, and managed.</p>
+<h3 id="namespaces">Namespaces</h3>
+<p>A Kubernetes namespace provides a mechanism to scope resources in a cluster. In OpenShift, a <a href="https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/projects_and_users.html#projects" target="_blank" rel="noopener">project</a> is a Kubernetes namespace with additional annotations.</p>
+<p>Namespaces provide a unique scope for:</p>
+<ul>
+<li>Named resources to avoid basic naming collisions.</li>
+<li>Delegated management authority to trusted users.</li>
+<li>The ability to limit community resource consumption.</li>
+</ul>
+<p>Most objects in the system are scoped by namespace, but some are excepted and have no namespace, including nodes and users.</p>
+<p>The <a href="https://github.com/GoogleCloudPlatform/kubernetes/blob/master/docs/admin/namespaces.md" target="_blank" rel="noopener">Kubernetes documentation</a> has more information on namespaces.</p>
+<p> </p>
+<h2 id="openshift-limits-and-restrictions">Openshift limits and restrictions</h2>
+<p>There are three different types of limits and restrictions available in Openshift.</p>
+<ul>
+<li>Quotas</li>
+<li>Limit ranges</li>
+<li>Compute resources</li>
+</ul>
+<h3 id="quotas">Quotas</h3>
+<p>Quotas are boundaries configured per namespace and act as a upper limit for resources in that particular namespace. <em><strong>It essentially defines the capacity of the namespace.</strong></em> How this capacity is used is up to the user using the namespace. For example if the total capacity us used by one or one hundred pods is not dictated by the quota, except when a max number of pods is configured.</p>
+<p>Like most things in Openshift you can configure a quota with a yaml configuration. One basic configuration for a quota looks like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ResourceQuota</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">namespace-quota</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">hard</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">pods</span>: <span style="color:#e6db74">&#34;5&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">requests.cpu</span>: <span style="color:#e6db74">&#34;500m&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">requests.memory</span>: <span style="color:#ae81ff">512Mi </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">limits.cpu</span>: <span style="color:#e6db74">&#34;2&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">limits.memory</span>: <span style="color:#ae81ff">2Gi </span>
+</span></span></code></pre></div><p>This quota says that the namespace can have a maximum of 5 pods, and/or a max of 2 cores and 2 Gb of memory, the initial “claim” of this namespace is 500 millicores and 512 Mb of memory.</p>
+<p>Now it is important to note that by default these limits are imposed to “NonTerminating” pods only. Meaning that for example build pods which terminate eventually are not counted in this quota.</p>
+<p>Explicitly this can be configured by adding a scope to the yaml spec:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ResourceQuota</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">namespace-quota</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">hard</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">pods</span>: <span style="color:#e6db74">&#34;5&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">requests.cpu</span>: <span style="color:#e6db74">&#34;500m&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">requests.memory</span>: <span style="color:#ae81ff">512Mi </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">limits.cpu</span>: <span style="color:#e6db74">&#34;2&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">limits.memory</span>: <span style="color:#ae81ff">2Gi </span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">scopes</span>:
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">NotTerminating</span>
+</span></span></code></pre></div><p>There are also other scopes available, like Best effort and guaranteed.</p>
+<h3 id="limit-ranges">Limit ranges</h3>
+<p>One other type of limit is the “limit range”. A limit range is also configured on a namespace, however a limit range defines limits <em><strong>per pod and/or container</strong></em> in that namespace. It essentially provides CPU and memory limits for containers and pods.</p>
+<p>Again, configuring a limit range is also done by a yaml configuration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#e6db74">&#34;v1&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#e6db74">&#34;LimitRange&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;resource-limits&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>    -
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">type</span>: <span style="color:#e6db74">&#34;Pod&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">max</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;2&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;1Gi&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">min</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;200m&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;6Mi&#34;</span>
+</span></span><span style="display:flex;"><span>    -
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">type</span>: <span style="color:#e6db74">&#34;Container&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">max</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;2&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;1Gi&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">min</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;100m&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;4Mi&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">default</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;300m&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;200Mi&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">defaultRequest</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;200m&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">&#34;100Mi</span>
+</span></span></code></pre></div><p>Here we can see both Pod and Container limits. These limits define the <em><strong>“range”</strong></em> (hence the term limit range) for each container of pod in the namespace. So in the above example each Pod in the namespace will initially claim 200 millicores and 6Mb of memory and can run with a max of 1 GB of memory and 2 cores of CPU. The actual limits the Pod or container runs with can be defined in the Pod or Container spec which we will discover below. However the limit range defines the range of these limits.</p>
+<p>Another thing to note is the default and defaultRequest limits in the Container limit range. These are the limits applied to a container who do not specify further limits and hence get assigned the default.</p>
+<h3 id="compute-resources">Compute resources</h3>
+<p>The last of the limits is probably the easiest to understand, compute resources are defined on the Pod or the Container spec, in for example the deploymentconfig or the replication controller. And define the CPI and Memory limits for that particular pod.</p>
+<p>Lets look at an example Yaml:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Pod</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">image</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">nginx</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">requests</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">100m </span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">200Mi </span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">cpu</span>: <span style="color:#ae81ff">200m </span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">memory</span>: <span style="color:#ae81ff">400Mi</span>
+</span></span></code></pre></div><p>In the above spec the Pod will initially claim 100 millicores and 200 Mb of memory and will max out at 200 millicores and 400 Mb of memory. Note whenever a Limit range is also provided in the namespace where the above Pod runs and the compute resources limits here are within the limit range the Pod will run fine. If however the limits are above the limits in the limit range the pod will not start.</p>
+<h3 id="scopes">Scopes</h3>
+<p>All limits have a request and a max which define further ranges the Pod can operate on. Where the request is by all intense and purposes “guaranteed” (as long as the underlying node has the capacity). This gives the option to implicitly set different QoS tiers.</p>
+<ol>
+<li>BestEffort – no limits are provided whatsoever. The Pod claims whatever it needs, but is the first one to get scaled down or killed when other Pods request for resources.</li>
+<li>Burstable – The request limits are lower than the max limits. The initial limit is guaranteed, but the Pod can, if resources are available, burst to its maximum.</li>
+<li>Guaranteed – the request and max are identical, so it directly claims the max resources, even though the pod might not initially use all resources they are already claimed by the cluster, and therefore guaranteed.</li>
+</ol>
+<p>Below is an overall view of the three different Openshift limits.</p>
+<p><img src="images/openshift-limits-explained.jpg" alt=""></p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

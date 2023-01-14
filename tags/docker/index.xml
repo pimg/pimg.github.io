@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docker on API&#39;s you can trust</title>
+    <link>http://pimg.github.io/tags/docker/</link>
+    <description>Recent content in docker on API&#39;s you can trust</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 25 Aug 2017 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Openshift limits explained</title>
+      <link>http://pimg.github.io/posts/2017/08/openshift-limits-explained/</link>
+      <pubDate>Fri, 25 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2017/08/openshift-limits-explained/</guid>
+      <description>Openshift is a Paas platform offered by Red Hat based mainly on Docker and Kubernetes. One of the concepts behind it is that Ops can set boundaries for Dev. For example by providing a list of supported technologies in the form of base images. One other way Ops can further control the Paas cluster is to impose various limits on the components running in Openshift.
+However, Openshift currently has three different ways of setting restrictions on different levels which do interconnect in an implicit way.</description>
+    </item>
+    
+  </channel>
+</rss>

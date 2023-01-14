@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>apache-camel on API&#39;s you can trust</title>
+    <link>http://pimg.github.io/tags/apache-camel/</link>
+    <description>Recent content in apache-camel on API&#39;s you can trust</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 10 Jul 2017 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/tags/apache-camel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AES-256 message encryption in Apache Camel</title>
+      <link>http://pimg.github.io/posts/2017/07/aes-256-message-encryption-in-apache-camel/</link>
+      <pubDate>Mon, 10 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2017/07/aes-256-message-encryption-in-apache-camel/</guid>
+      <description>This blog post shows how to encrypt and decrypt the payload of the message using Apache Camel. The cryptografic algorithm used in this example is AES-256 since this was an explicit request from security. The key used in the example was obtained from a keystore.
+For extra security purposes AES encryption can be extended by using a so called Initialization Vector, which is similar as a NONCE a random number used per request.</description>
+    </item>
+    
+    <item>
+      <title>Playing around with Camel AsyncProcessor</title>
+      <link>http://pimg.github.io/posts/2017/05/playing-around-with-camel-asyncprocessor/</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2017/05/playing-around-with-camel-asyncprocessor/</guid>
+      <description>One of the most frequently used constructs in Apache Camel is the Processor (http://camel.apache.org/processor.html), it is used ofter for invoking custom code or performing message translations. The API of the processor is very clear and well documented. As are numerous examples available for using a Camel Processor. The lesser known brother of the Processor is the AsyncProcessor (http://camel.apache.org/asynchronous-processing.html) which is less documented and a less frequently used. Mainly because the AsyncProcessor is mainly targeted for Camel Component developers.</description>
+    </item>
+    
+    <item>
+      <title>Apache Camel - Dynamic redelivery based on MEP</title>
+      <link>http://pimg.github.io/posts/2017/04/apache-camel-dynamic-redelivery-based-on-mep/</link>
+      <pubDate>Thu, 06 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2017/04/apache-camel-dynamic-redelivery-based-on-mep/</guid>
+      <description>The exception handling and retry mechanisms in Apache Camel are quite extensive. In this blogpost we are going to take a look at customizing the retry based on a predicate implementation of our own thereby enabling really fine grained retry logic.
+In our example we are going to look at the MEP of the exchange, whenever it is inOnly we are going to retry since no synchronous subscriber is waiting for the response.</description>
+    </item>
+    
+    <item>
+      <title>Creating an insecure http4 component in Apache Camel</title>
+      <link>http://pimg.github.io/posts/2017/02/creating-an-insecure-http4-component-in-apache-camel/</link>
+      <pubDate>Fri, 17 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>http://pimg.github.io/posts/2017/02/creating-an-insecure-http4-component-in-apache-camel/</guid>
+      <description>Recently I was struggling with invoking HTTP endpoints using self-signed certificates using the Apache Camel http4 component. The crux of the problem was the fact these certificates change rapidly and are maintained by other teams. Since this was an internal call only, routed through a VPN I decided to approach the problem by disabling the certificate check instead of adding the self-signed certificates to a keystore which I normally do in these situations.</description>
+    </item>
+    
+  </channel>
+</rss>
