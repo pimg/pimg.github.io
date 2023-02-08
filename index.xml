@@ -6,7 +6,11 @@
     <description>Recent content on API&#39;s you can trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 22 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Jan 2023 20:18:59 +0100</lastBuildDate>
+    
+	<atom:link href="http://pimg.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Resume</title>
       <link>http://pimg.github.io/resume/</link>
@@ -22,7 +26,7 @@
       <pubDate>Tue, 03 Jan 2023 20:15:17 +0100</pubDate>
       
       <guid>http://pimg.github.io/media/</guid>
-      <description> Open Finance Appathon: YTS API Deep Dive Practitioner&amp;rsquo;s guide to API strategy Running multi cloud Openshift integrations Open source helps Schiphol fly to multi clouds </description>
+      <description> Open Finance Appathon: YTS API Deep Dive Practitioner&amp;rsquo;s guide to API strategy Running multi cloud Openshift integrations Open source helps Schiphol fly to multi clouds  </description>
     </item>
     
     <item>

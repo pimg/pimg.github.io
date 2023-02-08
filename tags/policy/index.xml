@@ -6,7 +6,11 @@
     <description>Recent content in policy on API&#39;s you can trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 22 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/tags/policy/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://pimg.github.io/tags/policy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>3scale policy development – part 2 generate a policy scaffold</title>
       <link>http://pimg.github.io/posts/2019/03/3scale-policy-development-part-2-generate-a-policy-scaffold/</link>

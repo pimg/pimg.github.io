@@ -6,7 +6,11 @@
     <description>Recent content in concurrent on API&#39;s you can trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 May 2017 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/tags/concurrent/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 26 May 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://pimg.github.io/tags/concurrent/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Playing around with Camel AsyncProcessor</title>
       <link>http://pimg.github.io/posts/2017/05/playing-around-with-camel-asyncprocessor/</link>

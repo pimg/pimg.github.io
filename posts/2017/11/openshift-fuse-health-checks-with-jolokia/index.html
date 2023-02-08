@@ -4,7 +4,7 @@
     <title>Openshift Fuse health checks with Jolokia // API&#39;s you can trust</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.109.0">
+    <meta name="generator" content="Hugo 0.68.3" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="apily" />
     <meta name="description" content="" />
@@ -20,7 +20,7 @@ As another way to monitor if all Camel routes are started I decided to leverage 
 <meta property="og:description" content="I recently ran into a problem where I needed to create an Openshift healthcheck for a Fuse container. Normally all Fuse containers exposed an http endpoint which was used in the healthcheck. However additional security requirements dictated the use of client certificates. Currently it is not possible to create a healthcheck with a two-way-ssl connection.
 As another way to monitor if all Camel routes are started I decided to leverage the JMX beans exposed by Jolokia." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://pimg.github.io/posts/2017/11/openshift-fuse-health-checks-with-jolokia/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="http://pimg.github.io/posts/2017/11/openshift-fuse-health-checks-with-jolokia/" />
 <meta property="article:published_time" content="2017-11-24T00:00:00+00:00" />
 <meta property="article:modified_time" content="2017-11-24T00:00:00+00:00" />
 
@@ -29,6 +29,7 @@ As another way to monitor if all Camel routes are started I decided to leverage 
   <body>
     <header class="app-header">
       <a href="http://pimg.github.io/"><img class="app-header-avatar" src="/avatar.jpg" alt="apily" /></a>
+      <span class="app-header-title">API&#39;s you can trust</span>
       <nav class="app-header-menu">
           <a class="app-header-menu-item" href="/">Home</a>
             <BR>
@@ -107,8 +108,8 @@ As another way to monitor if all Camel routes are started I decided to leverage 
 <p>The problem was that by default the Jolokia endpoint is secured with basic authentication, and the password is generated for each created container in Openshift.</p>
 <p>However, the Jolokia password for each container is available in the base image (FIS 2 fis-java base image was used) of each container: <strong>/opt/etc/jolokia.pw</strong></p>
 <p>This file can be used to execute the curl request to the Jolokia endpoint:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -k -v https://jolokia:<span style="color:#e6db74">`</span>cat /opt/jolokia/etc/jolokia.pw<span style="color:#e6db74">`</span>@localhost:8778/jolokia/exec/org.apache.camel:context<span style="color:#f92672">=</span>myCamelContext,type<span style="color:#f92672">=</span>routes,name<span style="color:#f92672">=</span>%22myJettyEndpoint%22/getState%28%29
-</span></span></code></pre></div><p>In the above example the state of the “myJettyEndpoint” camel endpoint is requested.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -k -v https://jolokia:<span style="color:#e6db74">`</span>cat /opt/jolokia/etc/jolokia.pw<span style="color:#e6db74">`</span>@localhost:8778/jolokia/exec/org.apache.camel:context<span style="color:#f92672">=</span>myCamelContext,type<span style="color:#f92672">=</span>routes,name<span style="color:#f92672">=</span>%22myJettyEndpoint%22/getState%28%29
+</code></pre></div><p>In the above example the state of the “myJettyEndpoint” camel endpoint is requested.</p>
 
     </div>
     <div class="post-footer">

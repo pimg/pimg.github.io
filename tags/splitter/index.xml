@@ -6,7 +6,11 @@
     <description>Recent content in splitter on API&#39;s you can trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Jun 2017 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/tags/splitter/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 30 Jun 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://pimg.github.io/tags/splitter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Camel Split using a custom Iterator</title>
       <link>http://pimg.github.io/posts/2017/06/camel-split-using-a-custom-iterator/</link>

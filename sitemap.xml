@@ -1,224 +1,370 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://pimg.github.io/</loc>
+    <lastmod>2023-01-03T20:18:59+01:00</lastmod>
+  </url>
+  
   <url>
     <loc>http://pimg.github.io/resume/</loc>
     <lastmod>2023-01-03T20:18:59+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/media/</loc>
     <lastmod>2023-01-03T20:15:17+01:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/about/</loc>
     <lastmod>2022-09-17T17:41:20+02:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/3scale/</loc>
     <lastmod>2019-03-22T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/posts/2019/03/3scale-policy-development-part-2-generate-a-policy-scaffold/</loc>
     <lastmod>2019-03-22T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/categories/api-management/</loc>
     <lastmod>2019-03-22T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://pimg.github.io/</loc>
-    <lastmod>2019-03-22T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/apicast/</loc>
     <lastmod>2019-03-22T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/apicast-policy/</loc>
     <lastmod>2019-03-22T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/categories/</loc>
     <lastmod>2019-03-22T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/development/</loc>
     <lastmod>2019-03-22T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/lua/</loc>
     <lastmod>2019-03-22T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/openresty/</loc>
     <lastmod>2019-03-22T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/policy/</loc>
     <lastmod>2019-03-22T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/posts/</loc>
     <lastmod>2019-03-22T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/scaffold/</loc>
     <lastmod>2019-03-22T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/</loc>
     <lastmod>2019-03-22T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/posts/2019/03/3scale-policy-development-part-1-setting-up-a-development-environment/</loc>
     <lastmod>2019-03-01T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/api-gateway/</loc>
     <lastmod>2019-03-01T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/luajit/</loc>
     <lastmod>2019-03-01T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/nginx/</loc>
     <lastmod>2019-03-01T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/activemq/</loc>
     <lastmod>2018-03-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/posts/2018/03/authenticating-a-jms-consumer-with-3scale-camel-and-activemq/</loc>
     <lastmod>2018-03-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/camel/</loc>
     <lastmod>2018-03-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/java-plugin/</loc>
     <lastmod>2018-03-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/posts/2018/01/camel-setting-exchange-headers-in-a-custom-dataformat/</loc>
     <lastmod>2018-01-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/camel-dataformat/</loc>
     <lastmod>2018-01-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/camel-headers/</loc>
     <lastmod>2018-01-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/camel-message/</loc>
     <lastmod>2018-01-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/categories/jboss-fuse/</loc>
     <lastmod>2018-01-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/healthcheck/</loc>
     <lastmod>2017-11-24T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/jmx/</loc>
     <lastmod>2017-11-24T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/jolokia/</loc>
     <lastmod>2017-11-24T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/livelinesprobe/</loc>
     <lastmod>2017-11-24T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/categories/openshift/</loc>
     <lastmod>2017-11-24T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/posts/2017/11/openshift-fuse-health-checks-with-jolokia/</loc>
     <lastmod>2017-11-24T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/readinessprobe/</loc>
     <lastmod>2017-11-24T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/compute-resources/</loc>
     <lastmod>2017-08-25T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/docker/</loc>
     <lastmod>2017-08-25T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/kubernetes/</loc>
     <lastmod>2017-08-25T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/limits/</loc>
     <lastmod>2017-08-25T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/posts/2017/08/openshift-limits-explained/</loc>
     <lastmod>2017-08-25T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/quatas/</loc>
     <lastmod>2017-08-25T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/resource-limits/</loc>
     <lastmod>2017-08-25T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/aes-256/</loc>
     <lastmod>2017-07-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/posts/2017/07/aes-256-message-encryption-in-apache-camel/</loc>
     <lastmod>2017-07-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/aes-256-camel/</loc>
     <lastmod>2017-07-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/apache-camel/</loc>
     <lastmod>2017-07-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/camel-crypto/</loc>
     <lastmod>2017-07-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/camel-encryption/</loc>
     <lastmod>2017-07-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/crypto/</loc>
     <lastmod>2017-07-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/cryptodataformat/</loc>
     <lastmod>2017-07-10T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/posts/2017/06/camel-split-using-a-custom-iterator/</loc>
     <lastmod>2017-06-30T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/custom-splitter/</loc>
     <lastmod>2017-06-30T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/iterator/</loc>
     <lastmod>2017-06-30T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/splitter/</loc>
     <lastmod>2017-06-30T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/async/</loc>
     <lastmod>2017-05-26T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/async-processor/</loc>
     <lastmod>2017-05-26T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/concurrent/</loc>
     <lastmod>2017-05-26T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/posts/2017/05/playing-around-with-camel-asyncprocessor/</loc>
     <lastmod>2017-05-26T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/processor/</loc>
     <lastmod>2017-05-26T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/posts/2017/04/apache-camel-dynamic-redelivery-based-on-mep/</loc>
     <lastmod>2017-04-06T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/custom-redelivery/</loc>
     <lastmod>2017-04-06T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/custom-retry/</loc>
     <lastmod>2017-04-06T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/exception-handling/</loc>
     <lastmod>2017-04-06T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/mep/</loc>
     <lastmod>2017-04-06T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/redelivery/</loc>
     <lastmod>2017-04-06T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/retry/</loc>
     <lastmod>2017-04-06T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/posts/2017/02/creating-an-insecure-http4-component-in-apache-camel/</loc>
     <lastmod>2017-02-17T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/categories/geen-categorie/</loc>
     <lastmod>2017-02-17T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/hostnameverification/</loc>
     <lastmod>2017-02-17T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/http4/</loc>
     <lastmod>2017-02-17T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>http://pimg.github.io/tags/tls/</loc>
     <lastmod>2017-02-17T00:00:00+00:00</lastmod>
   </url>
+  
 </urlset>

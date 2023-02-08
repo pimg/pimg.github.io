@@ -6,7 +6,11 @@
     <description>Recent content in custom-redelivery on API&#39;s you can trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 Apr 2017 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/tags/custom-redelivery/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 06 Apr 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://pimg.github.io/tags/custom-redelivery/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Apache Camel - Dynamic redelivery based on MEP</title>
       <link>http://pimg.github.io/posts/2017/04/apache-camel-dynamic-redelivery-based-on-mep/</link>

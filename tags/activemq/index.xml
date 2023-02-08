@@ -6,7 +6,11 @@
     <description>Recent content in activemq on API&#39;s you can trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 10 Mar 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/tags/activemq/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://pimg.github.io/tags/activemq/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Authenticating a JMS consumer with 3Scale, Camel and ActiveMQ</title>
       <link>http://pimg.github.io/posts/2018/03/authenticating-a-jms-consumer-with-3scale-camel-and-activemq/</link>

@@ -6,7 +6,11 @@
     <description>Recent content in healthcheck on API&#39;s you can trust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 24 Nov 2017 00:00:00 +0000</lastBuildDate><atom:link href="http://pimg.github.io/tags/healthcheck/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://pimg.github.io/tags/healthcheck/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Openshift Fuse health checks with Jolokia</title>
       <link>http://pimg.github.io/posts/2017/11/openshift-fuse-health-checks-with-jolokia/</link>
